@@ -23,11 +23,11 @@
 </head>
 <body>
 
-    <!-- Carga directa del juego por iframe con permisos de memoria compartida -->
-    <iframe src="https://vel.gg/bsz" allow="autoplay; fullscreen; cross-origin-isolated; shared-array-buffer" allowfullscreen></iframe>
+    <!-- Carga directa apuntando a la raíz vel.gg con permisos de memoria compartida -->
+    <iframe src="https://vel.gg" allow="autoplay; fullscreen; cross-origin-isolated; shared-array-buffer" allowfullscreen></iframe>
 
     <script>
-        // Registrar el Service Worker para asegurar la compatibilidad local
+        // Registrar el Service Worker para asegurar la compatibilidad local y caché
         if (navigator.serviceWorker) {
             navigator.serviceWorker.register('./sw.js').then((reg) => {
                 console.log("Service Worker registrado con éxito:", reg);
