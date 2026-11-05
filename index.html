@@ -4,55 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BO1 Zombies - Vercel Proxy</title>
+    <title>BO1 Zombies - Port</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background: #0b0b0b;
-            color: #fff;
-            font-family: sans-serif;
+            background: #000;
             overflow: hidden;
         }
-        #loader {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 1;
-        }
         iframe {
-            position: relative;
             width: 100%;
             height: 100%;
             border: none;
-            z-index: 2;
         }
     </style>
 </head>
 <body>
 
-    <div id="loader">
-        <h2>Cargando juego a través del proxy...</h2>
-        <p>Estableciendo túnel seguro en Vercel</p>
-    </div>
-
-    <!-- Apunta a la ruta interna gestionada por el rewrites de Vercel -->
-    <iframe src="/juego-proxy/bsz" allow="autoplay; fullscreen; cross-origin-isolated; shared-array-buffer" allowfullscreen></iframe>
+    <!-- Carga directa del juego por iframe con permisos de memoria compartida -->
+    <iframe src="https://vel.gg/bsz" allow="autoplay; fullscreen; cross-origin-isolated; shared-array-buffer" allowfullscreen></iframe>
 
     <script>
-        // Registrar el Service Worker para asegurar la caché local
+        // Registrar el Service Worker para asegurar la compatibilidad local
         if (navigator.serviceWorker) {
             navigator.serviceWorker.register('./sw.js').then((reg) => {
-                console.log("Service Worker registrado:", reg);
-                if (!navigator.serviceWorker.controller) {
-                    window.location.reload();
-                }
+                console.log("Service Worker registrado con éxito:", reg);
             }).catch((err) => {
-                console.error("Error al registrar el SW:", err);
+                console.error("Fallo al registrar el Service Worker:", err);
             });
         }
     </script>
