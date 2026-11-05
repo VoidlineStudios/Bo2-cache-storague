@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Esto oculta tu dominio de Vercel para que el servidor crea que entras directo -->
+    <meta name="referrer" content="no-referrer">
     <title>BO1 Zombies - Port</title>
     <style>
         body, html {
@@ -23,11 +25,11 @@
 </head>
 <body>
 
-    <!-- Carga directa apuntando a la raíz vel.gg con permisos de memoria compartida -->
+    <!-- Carga directa a vel.gg sin dejar rastro del origen cruzado -->
     <iframe src="https://vel.gg" allow="autoplay; fullscreen; cross-origin-isolated; shared-array-buffer" allowfullscreen></iframe>
 
     <script>
-        // Registrar el Service Worker para asegurar la compatibilidad local y caché
+        // Mantener el Service Worker activo para el manejo de caché y memoria
         if (navigator.serviceWorker) {
             navigator.serviceWorker.register('./sw.js').then((reg) => {
                 console.log("Service Worker registrado con éxito:", reg);
